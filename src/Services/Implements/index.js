@@ -1,7 +1,7 @@
 import axiosIntance from '../../utils/axiosInstance'
 
-const getAll = async (params = {}) => {
-  return await axiosIntance.get('/implements', { params })
+const getAll = async () => {
+  return await axiosIntance.get('/implements')
 }
 
 const getImplementById = async (id) => {
