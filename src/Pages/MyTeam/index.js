@@ -45,11 +45,9 @@ const Manager = ({ myTeamSearch, setMyTeamSearch, cleanMyTeamSearch }) => {
   const getAllUsers = async () => {
     setLoading(true)
     try {
-      const {
-        data: { source,total }
-      } = await getAll(buildMyTeamSearch(myTeamSearch))
-      setUsers(source)
-      setTotal(total)
+      const { data } = await getAll(buildMyTeamSearch(myTeamSearch))
+      setUsers(data)
+      setTotal(data && data.length)
     }catch (error) {
       console.log(error)
     }

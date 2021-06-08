@@ -5,24 +5,20 @@ import { compose } from 'ramda'
 
 import LoginContainer from '../../Containers/Login'
 import Auth from '../../Services/Auth'
-import { getCompanyById } from '../../Services/Company'
-import { getAllStatus } from '../../Services/Status'
-import { getSubscriptionActivated } from '../../Services/Subscription'
 
 const Login = ({
   history,
   loggedUser,
-  setCompany,
-  setStatus,
-  setSubscription
 }) => {
   const [isVisibleMessageError, setIsVisibleMessageError] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const authentication = (values) => {
-    let redirectPage = '/logged/dashboard'
+    const { document } = values
+
+    let redirectPage = '/logged/implement/manager'
     setLoading(true)
-    Auth(values)
+    Auth({...values, document: document.replace(/\D/g, '') })
       .then(({ data }) => {
         loggedUser(data)
         if (data.firstAccess) {
@@ -32,14 +28,6 @@ const Login = ({
         localStorage.setItem('user.name', data.name)
         return data
       })
-      .then((data) => {
-        return getCompanyById(data.companyId)
-      })
-      .then(({ data }) => setCompany(data))
-      .then(() => getAllStatus({ limit: 9999 }))
-      .then(({ data }) => setStatus(data))
-      .then(() => getSubscriptionActivated())
-      .then(({ data }) => setSubscription(data))
       .then(() => history.push(redirectPage))
       .catch((err) => {
         setLoading(false)

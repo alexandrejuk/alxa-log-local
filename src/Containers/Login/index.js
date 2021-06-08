@@ -13,7 +13,6 @@ const Login = ({
   authentication,
   isVisibleMessageError,
   loading,
-  registerPath
 }) => {
   const onFinish = (values) => {
     authentication(values)
@@ -35,8 +34,8 @@ const Login = ({
                 <Col span={16}>
                   <Paragraph style={{ textAlign: 'center' }}>
                     Gestão de verdade para o seu négocio, fácil, rápido e preço
-                    justo, com o alxa, você tem ao seu alcance, gestão de
-                    clientes, produtos, pedidos e muito mais!
+                    justo, com o alxa log, você tem ao seu alcance, gestão de
+                    clientes, operação e muito mais!
                   </Paragraph>
                 </Col>
               </Row>
@@ -53,7 +52,7 @@ const Login = ({
         <Row justify="center">
           <Col span={20}>
             <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item label="E-mail" name="email" rules={rules}>
+              <Form.Item label="Documento" name="document" rules={rules}>
                 <Input />
               </Form.Item>
               <Form.Item label="Senha" name="password" rules={rules}>
@@ -76,20 +75,20 @@ const Login = ({
         {isVisibleMessageError && (
           <Row justify="center">
             <Paragraph style={{ textAlign: 'center', color: 'red' }}>
-              E-mail ou senha incorretos. Confira-os.
+              Documento ou senha incorretos. Confira-os.
             </Paragraph>
           </Row>
         )}
-
+{/* 
         <Row justify="center">
           <Paragraph style={{ textAlign: 'center' }}>
-            Ainda não possui conta no alxa?
+            Ainda não possui conta no alxa log?
           </Paragraph>
         </Row>
 
         <Row justify="center">
           <Link to={registerPath}>Cadastre-se agora</Link>
-        </Row>
+        </Row> */}
       </Col>
     </Row>
   )
